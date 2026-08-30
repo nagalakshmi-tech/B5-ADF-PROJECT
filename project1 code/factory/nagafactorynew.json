@@ -1,0 +1,15 @@
+{
+	"name": "nagafactorynew",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "9ac10318-044d-4212-a19d-984b11bb1b84",
+		"tenantId": "35de7857-1d19-45af-a928-0598a4442ef3"
+	}
+}

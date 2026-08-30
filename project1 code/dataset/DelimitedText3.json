@@ -1,0 +1,49 @@
+{
+	"name": "DelimitedText3",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_LAKE",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"dest_p_filename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().dest_p_filename",
+					"type": "Expression"
+				},
+				"fileSystem": "raw-data"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "ID",
+				"type": "String"
+			},
+			{
+				"name": "SalesMobile",
+				"type": "String"
+			},
+			{
+				"name": "SalesRefrigerator",
+				"type": "String"
+			},
+			{
+				"name": "SalesWashing machine",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
