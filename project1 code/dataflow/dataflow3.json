@@ -1,0 +1,77 @@
+{
+	"name": "dataflow3",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText7",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				},
+				{
+					"dataset": {
+						"referenceName": "DelimitedText8",
+						"type": "DatasetReference"
+					},
+					"name": "source2"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText9",
+						"type": "DatasetReference"
+					},
+					"name": "sink1",
+					"rejectedDataLinkedService": {
+						"referenceName": "LS_LAKE",
+						"type": "LinkedServiceReference"
+					}
+				}
+			],
+			"transformations": [
+				{
+					"name": "join1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Employee_ID as string,",
+				"          First_Name as string,",
+				"          Salary as string,",
+				"          Location as string,",
+				"          dep_id as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     partitionBy('hash', 1)) ~> source1",
+				"source(output(",
+				"          dep_id as string,",
+				"          dep_name as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     partitionBy('hash', 1)) ~> source2",
+				"source1, source2 join(source1@dep_id == source2@dep_id,",
+				"     joinType:'inner',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     partitionBy('hash', 1),",
+				"     broadcast: 'auto')~> join1",
+				"join1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink1"
+			]
+		}
+	}
+}
