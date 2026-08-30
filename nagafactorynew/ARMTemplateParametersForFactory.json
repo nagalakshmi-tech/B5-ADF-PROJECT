@@ -1,0 +1,33 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "nagafactorynew"
+		},
+		"LS_LAKE_accountKey": {
+			"value": ""
+		},
+		"LS_S3_secretAccessKey": {
+			"value": ""
+		},
+		"LS_SQL_password": {
+			"value": ""
+		},
+		"LS_LAKE_properties_typeProperties_url": {
+			"value": "https://nagadatalake.dfs.core.windows.net/"
+		},
+		"LS_S3_properties_typeProperties_accessKeyId": {
+			"value": "AKIAWOTMI45X5SLYITXX"
+		},
+		"LS_SQL_properties_typeProperties_server": {
+			"value": "nagaserver.database.windows.net"
+		},
+		"LS_SQL_properties_typeProperties_database": {
+			"value": "nagadatabase"
+		},
+		"LS_SQL_properties_typeProperties_userName": {
+			"value": "azureuser"
+		}
+	}
+}
